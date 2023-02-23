@@ -57,6 +57,6 @@ function game() {
             gameWinner = "Tie Game."
         }
     }
+    //use console.log to display winner
     console.log(gameWinner)
 }
-//use console.log to display winner
