@@ -13,7 +13,7 @@ function playRound() {
     //computerSelection is the computer's choice    
     computerSelection = getComputerChoice();
 
-    let roundOutcome = "nothing"
+    let roundOutcome = "nothing";
     //return a string that declares the winner, like  "You lose! Paper beats Rock"
     if (playerSelection === computerSelection) {
         roundOutcome = "Tie";
@@ -22,12 +22,12 @@ function playRound() {
         if  ((playerSelection == "rock" && computerSelection == "paper") || 
             (playerSelection == "paper" && computerSelection == "scissors") ||
             (playerSelection == "scissors" && computerSelection == "rock")) {
-            roundOutcome = "You lose!"
+            roundOutcome = "You lose!";
         } else {
-            roundOutcome = "You win!"
+            roundOutcome = "You win!";
         }
     }
-    return roundOutcome
+    return roundOutcome;
 }
 
 
@@ -50,16 +50,16 @@ function game() {
 
         //return winner
         if (x > y) {
-            gameWinner = "You win the game!"
+            gameWinner = "You win the game!";
         } else if (x < y) {
-            gameWinner = "You lose the game."
+            gameWinner = "You lose the game.";
         } else {
-            gameWinner = "Tie Game."
+            gameWinner = "Tie Game.";
         }
     }
-    return gameWinner
+    return gameWinner;
 }
 
-let playGame = game() 
+let playGame = game();
 //use console.log to display winner
-console.log(playGame)
+console.log(playGame);
