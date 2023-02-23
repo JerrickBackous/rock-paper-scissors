@@ -1,6 +1,8 @@
 //create function named getComputerChoice() that randomly returns computer's choice
 function getComputerChoice() {
-
+    const rps = ["Rock", "Paper", "Scissors"]
+    let guess = Math.floor(Math.random() * rps.length)
+    return rps[guess]
 }
 
 //create function that playes a single round of rock, paper, scissors
