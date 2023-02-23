@@ -6,13 +6,13 @@ function getComputerChoice() {
 }
 
 //create function that playes a single round of rock, paper, scissors
-function playRound(user, computer) {
+function playRound() {
     //playerSelection is the player's choice (case-insensitive) (prompt())
     playerSelection = prompt("Rock, Paper, or Scissors?").toLowerCase();
 
     //computerSelection is the computer's choice    
     computerSelection = getComputerChoice();
-    
+
     let roundOutcome = "nothing"
     //return a string that declares the winner, like  "You lose! Paper beats Rock"
     if (playerSelection === computerSelection) {
@@ -27,14 +27,36 @@ function playRound(user, computer) {
             roundOutcome = "You win!"
         }
     }
-    console.log(roundOutcome)
     return roundOutcome
 }
 
 
 //create function named game()
+function game() {
     //create for loop that runs 5 times
-    //call the playRound function inside loop and displey round winner (console.log(playRound()))
-    //return winner
+    x = 0;
+    y = 0;
+    gameWinner = "none";
+    for (i = 0; i<5; i++) {
+        //call the playRound function inside loop and displey round winner (console.log(playRound()))
+        let roundWinner = playRound();
+        console.log(roundWinner);
 
+        if (roundWinner === "You win!") {
+            x += 1;
+        } else if (roundWinner === "You lose!") {
+            y += 1;
+        }
+
+        //return winner
+        if (x > y) {
+            gameWinner = "You win the game!"
+        } else if (x < y) {
+            gameWinner = "You lose the game."
+        } else {
+            gameWinner = "Tie Game."
+        }
+    }
+    console.log(gameWinner)
+}
 //use console.log to display winner
