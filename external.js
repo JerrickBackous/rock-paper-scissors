@@ -5,6 +5,14 @@ function getComputerChoice() {
     return rps[guess];
 }
 
+function insertDOM (classAdded, wording, preface) {
+    const out = document.querySelector('.output');
+    const divChild = document.createElement('div');
+    divChild.classList.add(classAdded);
+    divChild.textContent = preface + wording;
+    out.appendChild(divChild);
+}
+
 //create function that playes a single round of rock, paper, scissors
 function playRound() {
     //playerSelection is the player's choice (case-insensitive) (prompt())
@@ -36,11 +44,13 @@ function game() {
     //create for loop that runs 5 times
     x = 0;
     y = 0;
+    rounds = 1;
     gameWinner = "none";
-    for (i = 0; i<5; i++) {
+    for (i = 0; x < 5 && y < 5; i++) {
         //call the playRound function inside loop and displey round winner (console.log(playRound()))
         let roundWinner = playRound();
-        console.log(roundWinner);
+
+        insertDOM("roundWording", roundWinner, ((i+1)+'. '));
 
         if (roundWinner === "You win!") {
             x += 1;
@@ -60,6 +70,12 @@ function game() {
     return gameWinner;
 }
 
+const butn = document.querySelectorAll(".pick")
+butn.forEach(pick => {
+    'click', playRound
+});
+
 let playGame = game();
 //use console.log to display winner
-console.log(playGame);
+
+insertDOM("outcomeWording", playGame, "Final: ");
