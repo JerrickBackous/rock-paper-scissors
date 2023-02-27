@@ -14,68 +14,61 @@ function insertDOM (classAdded, wording, preface) {
 }
 
 //create function that playes a single round of rock, paper, scissors
-function playRound() {
+function playRound(playerSelection, _i, _win, _lose) {
     //playerSelection is the player's choice (case-insensitive) (prompt())
-    playerSelection = prompt("Rock, Paper, or Scissors?").toLowerCase();
-
-    //computerSelection is the computer's choice    
+    //computerSelection is the computer's choice 
     computerSelection = getComputerChoice();
 
     let roundOutcome = "nothing";
     //return a string that declares the winner, like  "You lose! Paper beats Rock"
-    if (playerSelection === computerSelection) {
+    if (playerSelection.target.id === computerSelection) {
         roundOutcome = "Tie";
-        return roundOutcome;
     } else {
-        if  ((playerSelection == "rock" && computerSelection == "paper") || 
-            (playerSelection == "paper" && computerSelection == "scissors") ||
-            (playerSelection == "scissors" && computerSelection == "rock")) {
+        if  ((playerSelection.target.id === "rock" && computerSelection === "paper") || 
+            (playerSelection.target.id === "paper" && computerSelection === "scissors") ||
+            (playerSelection.target.id === "scissors" && computerSelection === "rock")) {
             roundOutcome = "You lose!";
+            lose++
         } else {
+            win++
             roundOutcome = "You win!";
         }
     }
+    
+    insertDOM('round', roundOutcome, i + 1 + ". ");
+
+
+    if (win >= 5) {
+        roundOutcome = "You won the game!"
+        i = 0;
+        win = 0;
+        lose = 0;
+        insertDOM('final', roundOutcome, "Final: ");
+    } else if (lose >= 5) {
+        roundOutcome = "You lost the game."
+        i = 0;
+        win = 0;
+        lose = 0;
+        insertDOM('final', roundOutcome, "Final: ");
+    }
+
+    i++
+    
     return roundOutcome;
 }
 
+let i = 0;
+let win = 0;
+let lose = 0;
 
-//create function named game()
-function game() {
-    //create for loop that runs 5 times
-    x = 0;
-    y = 0;
-    rounds = 1;
-    gameWinner = "none";
-    for (i = 0; x < 5 && y < 5; i++) {
-        //call the playRound function inside loop and displey round winner (console.log(playRound()))
-        let roundWinner = playRound();
+const btnRock = document.querySelector('#rock');
+const btnPaper = document.querySelector('#paper');
+const btnScissors = document.querySelector('#scissors');
 
-        insertDOM("roundWording", roundWinner, ((i+1)+'. '));
+btnRock.addEventListener('click', playRound, btnRock);
+btnPaper.addEventListener('click', playRound, btnPaper);
+btnScissors.addEventListener('click', playRound, btnScissors);
 
-        if (roundWinner === "You win!") {
-            x += 1;
-        } else if (roundWinner === "You lose!") {
-            y += 1;
-        }
-
-        //return winner
-        if (x > y) {
-            gameWinner = "You win the game!";
-        } else if (x < y) {
-            gameWinner = "You lose the game.";
-        } else {
-            gameWinner = "Tie Game.";
-        }
-    }
-    return gameWinner;
-}
-
-const butn = document.querySelectorAll(".pick")
-butn.forEach(pick => {
-    'click', playRound
-});
-
-let playGame = game();
+//let playGame = game();
 //use console.log to display winner
 
-insertDOM("outcomeWording", playGame, "Final: ");
